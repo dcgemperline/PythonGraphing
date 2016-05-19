@@ -1,0 +1,24 @@
+PAG1_Minus					
+ProteasomeAnnotation	Neg_LOG(P-value)	Difference	ATG	Symbol	Description
+PIP2	5.433605642	11.48799451	AT3G25545.1 	 Symbols:  	 unknown protein
+PBAC2	5.133125058	10.97038778	AT3G18940.1 	 Symbols:  	 clast3-related 
+PIP1	5.651542661	10.39919027	AT3G07640.1 	 Symbols:  	 unknown protein
+PA200	4.963428464	9.317393621	AT3G13330.1 	 Symbols: PA200 	 proteasome activating protein 200 
+Ump1c?	4.866460608	8.085638682	AT5G38650.1 	 Symbols:  	 Proteasome maturation factor UMP1 
+NULL	3.380176599	7.817471822	AT1G23520.1 	 Symbols:  	 Domain of unknown function (DUF220) 
+NULL	6.249761724	7.472642899	AT1G01320.2 	 Symbols:  	 Tetratricopeptide repeat (TPR)-like superfamily protein 
+PBACX?	1.268804244	7.25909551	AT1G48170.1 	 Symbols:  	 unknown protein
+NULL	5.344544857	6.989468257	AT3G53970.1 	 Symbols:  	 proteasome inhibitor-related 
+Ump1a	3.924370085	6.974452337	AT1G67250.1 	 Symbols:  	 Proteasome maturation factor UMP1 
+PBAC3	6.331342606	6.939222972	AT5G14710.1 	 Symbols:  	 CONTAINS InterPro DOMAIN/s: Proteasome assembly chaperone 3 (InterPro:IPR018788)
+NULL	2.551270756	5.907026927	AT2G47360.1 	 Symbols:  	 unknown protein
+NULL	2.634945602	5.341658274	AT3G44310.2 	" Symbols: NIT1, ATNIT1, NITI "	 nitrilase 1 
+ECM29	1.75472483	5.101833344	AT2G26780.1 	 Symbols:  	 ARM repeat superfamily protein 
+NULL	3.876653573	5.028315226	AT4G17100.1 	 Symbols:  	 CONTAINS InterPro DOMAIN/s: Endoribonuclease XendoU (InterPro:IPR018998)
+NULL	3.797532312	4.903383255	AT1G23780.1 	 Symbols:  	 F-box family protein 
+NULL	1.577137349	4.705690384	AT5G27960.1 	 Symbols: AGL90 	 AGAMOUS-like 90 
+NULL	3.805636247	4.388057709	AT1G21530.1 	 Symbols:  	 AMP-dependent synthetase and ligase family protein 
+NULL	1.638124446	4.170621236	AT2G17200.1 	 Symbols: DSK2 	 ubiquitin family protein 
+NULL	3.439335926	3.488550186	AT3G26020.2 	 Symbols:  	 Protein phosphatase 2A regulatory B subunit family protein 
+NULL	3.171057654	3.407407761	ATCG00680.1 	 Symbols: PSBB 	 photosystem II reaction center protein B 
+NULL	3.343379559	3.086858749	AT2G41800.1 	 Symbols:  	" Protein of unknown function, DUF642 "

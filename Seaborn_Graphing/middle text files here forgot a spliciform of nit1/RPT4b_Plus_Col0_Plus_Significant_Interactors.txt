@@ -1,0 +1,15 @@
+	index	-Log(P-value)	Difference	Fasta headers	ProteasomeAnnotation
+0	532	2.718618143	4.63106219	AT3G26020.2 | Symbols:  | Protein phosphatase 2A regulatory B subunit family protein | chr3:9514363-9516585 FORWARD LENGTH=510;AT3G26020.1 | Symbols:  | Protein phosphatase 2A regulatory B subunit family protein | chr3:9514363-9516585 FORWARD LENGTH=510;AT	NULL
+1	279	3.357535188	4.906126658	AT2G17200.1 | Symbols: DSK2 | ubiquitin family protein | chr2:7482133-7485090 REVERSE LENGTH=551;AT2G17190.1 | Symbols:  | ubiquitin family protein | chr2:7478272-7481361 REVERSE LENGTH=538	NULL
+2	264	2.469884881	5.038948695	AT2G04235.1 | Symbols:  | unknown protein;FUNCTIONS IN: molecular_function unknown;INVOLVED IN: biological_process unknown;LOCATED IN: cellular_component unknown;EXPRESSED IN: cultured cell;Has 713 Blast hits to 345 proteins in 122 species: Archae - 2	NULL
+3	784	2.7134560760000004	5.173588435	AT5G05180.2 | Symbols:  | unknown protein;BEST Arabidopsis thaliana protein match is: unknown protein (TAIR:AT3G10880.1);Has 50151 Blast hits to 28081 proteins in 1838 species: Archae - 860;Bacteria - 6013;Metazoa - 25867;Fungi - 3836;Plants - 2236;	NULL
+4	953	2.7564409660000004	5.361600876000001	AT5G66420.1 | Symbols:  | CONTAINS InterPro DOMAIN/s: Uncharacterised conserved protein UCP033271 (InterPro:IPR008322), TIM-barrel signal transduction protein, predicted (InterPro:IPR009215);Has 30201 Blast hits to 17322 proteins in 780 species: Archae -	NULL
+5	408	3.2126526419999997	5.793167114	AT2G47360.1 | Symbols:  | unknown protein;BEST Arabidopsis thaliana protein match is: unknown protein (TAIR:AT1G02570.1);Has 58 Blast hits to 55 proteins in 6 species: Archae - 0;Bacteria - 0;Metazoa - 0;Fungi - 0;Plants - 58;Viruses - 0;Other Euka	NULL
+6	860	3.4608898	6.375722249	AT5G27960.1 | Symbols: AGL90 | AGAMOUS-like 90 | chr5:9991685-9992770 REVERSE LENGTH=320	NULL
+7	480	3.667117745	6.495375315	AT3G13330.1 | Symbols: PA200 | proteasome activating protein 200 | chr3:4319804-4330061 REVERSE LENGTH=1816	PA200
+8	571	3.5333520430000003	6.6017176310000005	AT3G48670.2 | Symbols: IDN2, RDM12 | XH/XS domain-containing protein | chr3:18031240-18033615 FORWARD LENGTH=647;AT3G48670.1 | Symbols: IDN2, RDM12 | XH/XS domain-containing protein | chr3:18031240-18033615 FORWARD LENGTH=647	NULL
+9	477	1.795981034	6.867090861	AT3G13090.1 | Symbols: ATMRP8, ABCC6, MRP8 | multidrug resistance-associated protein 8 | chr3:4203013-4208171 REVERSE LENGTH=1466	NULL
+10	320	3.121210762	6.9298674270000005	AT2G26780.1 | Symbols:  | ARM repeat superfamily protein | chr2:11410125-11423598 FORWARD LENGTH=1826	ECM29
+11	931	4.497591113	8.199735641	AT5G57950.1 | Symbols:  | 26S proteasome regulatory subunit, putative | chr5:23460765-23462128 FORWARD LENGTH=227	Nas2
+12	261	1.68150246	8.543031693	AT2G03430.1 | Symbols:  | Ankyrin repeat family protein | chr2:1036192-1037536 REVERSE LENGTH=240	Nas6
+13	494	4.141303139	9.393270493	AT3G15180.1 | Symbols:  | ARM repeat superfamily protein | chr3:5111952-5115803 FORWARD LENGTH=519;AT3G15180.2 | Symbols:  | ARM repeat superfamily protein | chr3:5111952-5115803 FORWARD LENGTH=551	HSM3
