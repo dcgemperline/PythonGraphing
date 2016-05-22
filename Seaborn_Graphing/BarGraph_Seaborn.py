@@ -91,7 +91,7 @@ class BarGraphs():
     def PlotBarGraph(self, dataframe, outputFileName):
         ## Setup XKCD Colors
         #rpnlist = {"RPN1a", "RPN1b", "RPN2a", "RPN3a", "RPN3b", "RPN5a", "RPN5b",
-                   "RPN6", "RPN7", "RPN8a", "RPN8b", "RPN9a", "RPN9b", "RPN10", "RPN11", "RPN12a", "RPN12b", "RPN13"}
+        #           "RPN6", "RPN7", "RPN8a", "RPN8b", "RPN9a", "RPN9b", "RPN10", "RPN11", "RPN12a", "RPN12b", "RPN13"}
         #associatedlist = {""};
         #labelorderdict = { "Alpha" : "test"};
 
