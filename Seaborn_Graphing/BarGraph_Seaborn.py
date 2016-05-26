@@ -4,6 +4,7 @@ import numpy as np
 import DCG_Utilities as dcgutil
 ## Allows for easy text manipulation in illustrator by changing this
 mpl.rcParams['pdf.fonttype'] = 42
+#mpl.rcParams['svg.fonttype'] = 'none'
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -34,7 +35,14 @@ class BarGraphs():
         dataToPlot = dcgutil.Utilities.FilterDataFramebyInclusionList(dataframe=dataToPlot, inclusionlist =ColumnFilterSansCol0, sortbycolumnname ='C: ProteasomeAnnotation')
         dataToPlot = self.DataMassage(self, dataframe=dataToPlot)
         dataFrameList.append(dataToPlot)
-        self.PlotBarGraph(self,dataframe=dataToPlot, outputFileName=outputFileName)
+        rpnlist = ["RPN1a", "RPN1b", "RPN2a", "RPN3a", "RPN3b", "RPN5a", "RPN5b",
+                   "RPN6", "RPN7", "RPN8a", "RPN8b", "RPN9a", "RPN9b", "RPN10",
+                   "RPN11", "RPN12a", "Sem1(DSS1)-1"]
+        associatedlist = ["PIP2", "PBAC2", "PBAC3", "PBACX", "PIP1", "Ump1a",
+                          "Ump1c?", "HSM3", "Nas2", "Nas6", "PA200", "ECM29"]
+        orderlookup ={'RPN' : rpnlist, 'Assembly' : associatedlist}
+        self.PlotBarGraph(self,dataframe=dataToPlot, outputFileName=outputFileName, order=orderlookup.get(GraphGroupName))
+        
 
     def DataMassage(self, dataframe):
         mydataframe = dataframe
@@ -88,24 +96,32 @@ class BarGraphs():
         mydataframe['PulldownLabel'] = mydataframe['Pulldown'] + mydataframe['ATP']
         return mydataframe
     
-    def PlotBarGraph(self, dataframe, outputFileName):
+    def PlotBarGraph(self, dataframe, outputFileName, order = None):
         ## Setup XKCD Colors
-        #rpnlist = {"RPN1a", "RPN1b", "RPN2a", "RPN3a", "RPN3b", "RPN5a", "RPN5b",
-        #           "RPN6", "RPN7", "RPN8a", "RPN8b", "RPN9a", "RPN9b", "RPN10", "RPN11", "RPN12a", "RPN12b", "RPN13"}
-        #associatedlist = {""};
+        
         #labelorderdict = { "Alpha" : "test"};
 
         colors = ["cool grey", "pale red", "windows blue", "light blue"]
-        ## Parse Colors
-        colors = sns.xkcd_palette(colors);
-        ##SetupCusotmPalleteDictionary
-        custompalette=dict(Col0Minus=colors[0], Col0Plus=colors[0],
-                           PAG1Minus=colors[1], PAG1Plus=colors[1],
-                           RPT4aMinus=colors[2], RPT4aPlus=colors[2],
-                           RPT4bMinus=colors[3], RPT4bPlus=colors[3])
+        #rickscolors = ["#000000","#fbb016","#7270b3","#b3d234"]
+        rickscolors = [(255/255,255/255,255/255),(251/255,176/255,22/255),(114/255,112/255,179/255),(179/255,210/255,52/255)]
 
-        fg = sns.factorplot(x='Subunit', y='Log2(LFQ)', hue='PulldownLabel', kind='bar', col='ATP',
-                           data=dataframe, size=12, palette=custompalette, conf_lw=1.5, capsize=0.1, ci=68)
+        ## Parse Colors
+        #rickscolors = sns.color_palette(rickscolors)
+        #colors = sns.xkcd_palette(colors);
+        ##SetupCusotmPalleteDictionary
+        custompalette=dict(Col0Minus=rickscolors[0], rickscolors=colors[0],
+                           PAG1Minus=rickscolors[1], PAG1Plus=rickscolors[1],
+                           RPT4aMinus=rickscolors[2], RPT4aPlus=rickscolors[2],
+                           RPT4bMinus=rickscolors[3], RPT4bPlus=rickscolors[3])
+
+        if(order != None):
+            fg = sns.factorplot(x='Subunit', y='Log2(LFQ)', hue='PulldownLabel', kind='bar', col='ATP',
+                           data=dataframe, size=12, palette=custompalette, conf_lw=1.5, capsize=0.1,
+                           ci=68, order=order, saturation=1)
+        else:
+            fg = sns.factorplot(x='Subunit', y='Log2(LFQ)', hue='PulldownLabel', kind='bar', col='ATP',
+                           data=dataframe, size=12, palette=custompalette, conf_lw=1.5, capsize=0.1,
+                           ci=68, saturation = 1)
 
         #fg = sns.factorplot(x='Subunit', y='Log2(LFQ)', hue='PulldownLabel', kind='bar', col='ATP', row = 'SubComplex',
         #                    data=dataframe, size=12, palette=custompalette, conf_lw=1.5, capsize=0.1, ci=68)
@@ -162,8 +178,8 @@ GraphList = ['Alpha','Beta','RPT','RPN', 'Assembly']
 #GraphList = ['Assembly']
 
 for graphgroup in GraphList:
-        bargraph.GenerateBarGraph(bargraph,
-                          dataframe = pd.read_table("Bar_Graph_No_Imputation_All_BioReps.txt").fillna(value = 15),
-                          outputFileName= "BarGraph" + graphgroup, GraphGroupName= graphgroup)
+    bargraph.GenerateBarGraph(bargraph,
+                              dataframe = pd.read_table("Bar_Graph_No_Imputation_All_BioReps.txt").fillna(value = 15),
+                              outputFileName= "BarGraph" + graphgroup, GraphGroupName= graphgroup)
 
 bargraph.PlotBarGraphs(bargraph, dataframeList=dataFrameList, outputFileName="All")
