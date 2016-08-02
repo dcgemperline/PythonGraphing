@@ -245,7 +245,8 @@ class PlottingFunctions:
         if ('+' in Interactors['Significant'].values):
             Interactors = Interactors.loc[Interactors['Significant'] == '+']
             Interactors = Interactors.loc[Interactors['Difference'] >= 0]
-            Outputlist = ['Fasta headers','Difference','-Log(P-value)', 'ProteasomeAnnotation']
+            Outputlist = ['Fasta headers','Difference', '-Log(P-value)', 'ProteasomeAnnotation']
+            #print(Interactors)
             dataToWrite = dcgutils.Utilities.FilterDataFramebyInclusionList(Interactors, Outputlist, sortbycolumnname = 'Difference')
             dataToWrite = dataToWrite.reset_index()
             pd.DataFrame.to_csv(dataToWrite, outputfilename, sep='\t', na_rep='NULL')
@@ -316,9 +317,16 @@ class PlottingFunctions:
         ## Setup Axes and axes limit
         myaxes = kdeax.axes
         myaxes.set_ylim(0,1)
-        myaxes.set_xlim(-2,13)
+        myaxes.set_xlim(-10,13)
         
-        
+        ## KS two sample test
+        ks = scipy.stats.ks_2samp(CP['Difference'],RP['Difference'])
+        mediantest = scipy.stats.median_test(CP['Difference'],RP['Difference'])
+        mediantestpvalue = '%.2E' % Decimal(mediantest[1])
+        mediantestpvalue = "Median P Value =" + str(mediantestpvalue)
+        kspvalue = '%.2E' % Decimal(ks.pvalue)
+        kspvalue = "KS P Value =" + str(kspvalue)
+
 
         plt.vlines(kdemedianset1[0], 0, kdemedianset1[1], color=red)
         plt.vlines(kdemedianset2[0], 0, kdemedianset2[1], color=blue)
@@ -332,6 +340,9 @@ class PlottingFunctions:
         labeltoAdd = "Fold Change:"
         labeltoAdd += str(foldchange)
         plt.text(xposition+xoffset,yposition+yoffset, labeltoAdd, size=16)
+        plt.text(xposition+xoffset,yposition+yoffset-0.05, kspvalue, size=16)
+        plt.text(xposition+xoffset,yposition+yoffset-0.1, mediantestpvalue, size=16)
+
 
         ## Save Figure
         plt.savefig(outputFileName + ".pdf");
@@ -355,7 +366,7 @@ class PlottingFunctions:
 
         return [x_median, y_median]
             
-    def Thougts(self):
+    def Thoughts(self):
     #LabelList = ["PAG1_Minus_vs_Col0_Minus",
     #    "PAG1_Minus_vs_PAG1_Plus",
     #    "PAG1_Plus_vs_Col0_Plus",
@@ -402,4 +413,5 @@ for name, labelstyle in fileAndStyle.items():
 for name, labelstyle in fileAndStyle2.items():
     plot = PlottingFunctions(name +".txt", name+ "_Curve.txt", labelstyle)
     plot.GenerateFigure(name, shouldLabel=True)
+    plot.GenerateKDEAlonePlots(name + "_kde.txt")
     plot.GetSignificantInteractorsThatAreNotProteasomeSubunits(name + "_Significant_Interactors.txt")

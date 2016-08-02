@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e065a0d4-18fa-4cf2-b58b-cb796f592a63</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>BarGraph_Seaborn.py</StartupFile>
+    <StartupFile>Sequence_Identity_Heatmap.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,6 +33,9 @@
     </Compile>
     <Compile Include="Seaborn_Graphing.py" />
     <Compile Include="DCG_Utilities.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Sequence_Identity_Heatmap.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

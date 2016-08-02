@@ -38,8 +38,8 @@ class BarGraphs():
         rpnlist = ["RPN1a", "RPN1b", "RPN2a", "RPN3a", "RPN3b", "RPN5a", "RPN5b",
                    "RPN6", "RPN7", "RPN8a", "RPN8b", "RPN9a", "RPN9b", "RPN10",
                    "RPN11", "RPN12a", "Sem1(DSS1)-1"]
-        associatedlist = ["PIP2", "PBAC2", "PBAC3", "PBACX", "PIP1", "Ump1a",
-                          "Ump1c?", "HSM3", "Nas2", "Nas6", "PA200", "ECM29"]
+        associatedlist = ["PBAC1", "PBAC2", "PBAC3", "PBAC4", "PAP1", "Ump1a",
+                          "Ump1c?", "HSM3", "Nas2", "Nas6", "PA200", "ECM29", "PTRE1"]
         orderlookup ={'RPN' : rpnlist, 'Assembly' : associatedlist}
         self.PlotBarGraph(self,dataframe=dataToPlot, outputFileName=outputFileName, order=orderlookup.get(GraphGroupName))
         
@@ -125,7 +125,7 @@ class BarGraphs():
 
         #fg = sns.factorplot(x='Subunit', y='Log2(LFQ)', hue='PulldownLabel', kind='bar', col='ATP', row = 'SubComplex',
         #                    data=dataframe, size=12, palette=custompalette, conf_lw=1.5, capsize=0.1, ci=68)
-        fg.set(ylim=(15, None))
+        fg.set(ylim=(15,35))
         fg.set_xticklabels(rotation=-30)
         fg.savefig(outputFileName + ".png")
         fg.savefig(outputFileName + ".pdf")
@@ -172,6 +172,33 @@ class BarGraphs():
 
     def MyBarPlot(x, y, hue=None, palette=None, data=None, label=None, color=None, **kwargs):
         sns.barplot(data = data, x=x,y=y,hue=hue, palette=palette, conf_lw=1.5, capsize=0.1, ci=68)
+    def StandardizeColumns(self, dataframe):
+        dataframe.reset_index(inplace=True)
+        for column in dataframe:
+            if "RPT4a" in column:
+                RPT4avalue = np.where(dataframe['C: ProteasomeAnnotation']=="RPT4a")[0].tolist()[0]
+                RPT4avalue = dataframe.ix[RPT4avalue, column]
+                dataframe[column]= dataframe[column].apply(lambda x : x / RPT4avalue)
+            if "RPT4b" in column:
+                RPT4bvalue = np.where(dataframe['C: ProteasomeAnnotation']=="RPT4b")[0].tolist()[0]
+                RPT4bvalue = dataframe.ix[RPT4bvalue, column]
+                dataframe[column]= dataframe[column].apply(lambda x : x / RPT4bvalue)
+            if "PAG1" in column:
+                PAG1value = np.where(dataframe['C: ProteasomeAnnotation']=="PAG1")[0].tolist()[0]
+                PAG1value = dataframe.ix[PAG1value, column]
+                dataframe[column]= dataframe[column].apply(lambda x : x / PAG1value)
+        return dataframe;
+    def StandardizeColumnsRPT4aRPT4b(self, dataframe):
+        dataframe.reset_index(inplace=True)
+        #for column in dataframe:
+        #    if "RPT4a" in column or "RPT4b" in column:
+        #        RPT4avalue = np.where(dataframe['C: ProteasomeAnnotation']=="RPT4a")[0].tolist()[0]
+        #        RPT4avalue = dataframe.ix[RPT4avalue, column]
+        #        RPT4bvalue = np.where(dataframe['C: ProteasomeAnnotation']=="RPT4b")[0].tolist()[0]
+        #        RPT4bvalue = dataframe.ix[RPT4bvalue, column]
+        #        RPT4a_corrected = (RPT4avalue * (RPT4bvalue
+        #        RPT4b_corrected =
+
 
 bargraph = BarGraphs
 GraphList = ['Alpha','Beta','RPT','RPN', 'Assembly']
@@ -180,6 +207,7 @@ GraphList = ['Alpha','Beta','RPT','RPN', 'Assembly']
 for graphgroup in GraphList:
     bargraph.GenerateBarGraph(bargraph,
                               dataframe = pd.read_table("Bar_Graph_No_Imputation_All_BioReps.txt").fillna(value = 15),
+                              #dataframe = bargraph.StandardizeColumns(bargraph, pd.read_table("Linear_Scale_Data_Bar_Graphs.txt")),
                               outputFileName= "BarGraph" + graphgroup, GraphGroupName= graphgroup)
 
-bargraph.PlotBarGraphs(bargraph, dataframeList=dataFrameList, outputFileName="All")
+#bargraph.PlotBarGraphs(bargraph, dataframeList=dataFrameList, outputFileName="All")
